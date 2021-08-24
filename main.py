@@ -1,11 +1,15 @@
 import time
 
+def main(array):
+    bubbleSort(array)
+    intertionSort(array)
+
+
 def bubbleSort(array):
     start = time.time()
     sorted = False
     compares = 0
-    print("Sorting the following array..." )
-    print(*array)
+    print('Bubble Sorting the an array of {} elements...'.format(len(array)))
     while sorted == False:
 
         prevElement = array[0]
@@ -23,11 +27,42 @@ def bubbleSort(array):
                 sorted = False;
 
             prevElement = currentElement
-    print("NumberOfCompares: " + str(compares))
-    print("Duration: " + str(time.time() - start))
-    return array
+    end = time.time()
+    printStats(array, start, end, compares)
+
+def intertionSort(array):
+    start = time.time()
+    sorted = False
+    compares = 0
+    print('Insertion Sorting the an array of {} elements...'.format(len(array)))
+    while sorted == False:
+        for index in range(len(array)):
+            if index == 0:
+                continue
+            if array[index - 1] > array[index]:
+                compares += 1
+                insertionShift(index, array)
+        sorted = True
+        end = time.time()
+
+    printStats(array, start, end, compares)
+
+def insertionShift(indexPlaceHolder, array):
+    index = indexPlaceHolder
+    while index >= 1:
+        current = array[index]
+        next = array[index - 1]
+        if next > current:
+            array[index] = next
+            array[index - 1] = current
+        index -= 1
+
+def printStats(array, start, end, compares):
+    print('NumberOfCompares: {}'.format(str(compares)))
+    print("Duration: {} seconds".format(time.time() - start))
+    print(array)
 
 
 if __name__ == '__main__':
-    print(bubbleSort([1,3,7,3,6,2,6]))
+    main([1,3,7,3,6,2,6])
 
