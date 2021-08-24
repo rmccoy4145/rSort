@@ -4,9 +4,9 @@ A study on different sort algorithmns
 
 ## Description
 
-This project is a study of the different sorting algorithmns(Bubble, Insertion, Merge, & Quick) and their performance. 
-The program performs a sort on an array, prints out the duration and the total number of compares each algorithmn had to 
-execute to complete the sort.
+This project is a study of the different sorting algorithmns(Bubble, Insertion, Merge, & Quick) and how their
+performance scales. The program performs a sort on an array, prints out the duration and the total number of computes 
+each algorithmn executed to complete the sort.
 
 ## Getting Started
 
