@@ -2,11 +2,11 @@ import random
 import time
 
 def main():
-    array = random.sample(range(1, 10000), 9999)
-    # array = [2,4,6,3,4,5,8]
+    # array = random.sample(range(1, 10000), 9999)
+    array = [2,4,6,3,4,5,8]
 
-    bubbleSort(array.copy())
-    intertionSort(array.copy())
+    # bubbleSort(array.copy())
+    # intertionSort(array.copy())
     mergeSort(array.copy())
 
 
@@ -68,51 +68,52 @@ def insertionShift(indexPlaceHolder, array):
 def mergeSort(array):
     start = time.time()
     print('Merge Sorting an array of {} elements...'.format(len(array)))
-    arrayOfArrays = []
-    for element in array:
-        arrayOfArrays.append([element])
 
-    result = recursiveArrayMerge(arrayOfArrays, 0)
+    result = recursiveMergeSort(array, 0)
     end = time.time()
 
     printStats(result[0], start, end, result[1])
 
+def recursiveMergeSort(array, compares):
+    if len(array) <= 1:
+        return array
+    print("splitting....")
+    compares += 1
+    mid = len(array)//2
+    head = array[:mid]
+    tail = array[mid:]
 
-def recursiveArrayMerge(array, compares):
-    if len(array) == 1:
-        finalMerge = array[0]
-        for index, currentElement in enumerate(finalMerge):
-            insertionShift(index, finalMerge)
+    recursiveMergeSort(head, compares)
+    recursiveMergeSort(tail, compares)
 
-        return [finalMerge, compares]
+    return merge(array, head, tail, compares)
 
-    newArray = []
-    for index,currentElement in enumerate(array):
-        if index % 2 != 0:
-            continue
-        compares += 1
-        if index == len(array) - 1:
-            newArray.append(array[index])
-            insertionShift(len(newArray) - 1, newArray)
-            return recursiveArrayMerge(newArray, compares)
+def merge(array, head, tail, compares):
+    print("merging...")
+    headIndex = 0
+    tailIndex = 0
+    targetIndex = 0
 
-        partA = currentElement
-        partB = array[index + 1]
-        tmpMerge = []
-        if partA[0] < partB[0]:
-            for element in partA:
-                tmpMerge.append(element)
-            for element in partB:
-                tmpMerge.append(element)
+    remaining = len(tail) + len(head)
+
+    while remaining > 0:
+        if headIndex >= len(head):
+            array[targetIndex] = tail[tailIndex]
+            tailIndex += 1
+        elif tailIndex >= len(tail):
+            array[targetIndex] = head[headIndex]
+            headIndex += 1
+        elif head[headIndex] < tail[tailIndex]:
+            array[targetIndex] = head[headIndex]
+            headIndex += 1
         else:
-            for element in partB:
-                tmpMerge.append(element)
-            for element in partA:
-                tmpMerge.append(element)
-        insertionShift(len(tmpMerge) - 1, tmpMerge)
-        newArray.append(tmpMerge)
+            array[targetIndex] = tail[tailIndex]
+            tailIndex += 1
+        targetIndex += 1
+        remaining -= 1
+    return [array, compares]
 
-    return recursiveArrayMerge(newArray, compares)
+
 
 def printStats(array, start, end, compares):
     print('NumberOfCompares: {}'.format(str(compares)))
