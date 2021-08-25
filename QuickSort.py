@@ -6,6 +6,10 @@ class QuickSort:
         self.array = passedArray
         self.name = "QuickSort"
         self.compares = 0
+        self.swaps = 0
+
+    def getSwaps(self):
+        return self.swaps
 
     def execute(self):
         return self.recursiveQuickSort(self.array, 0, len(self.array))

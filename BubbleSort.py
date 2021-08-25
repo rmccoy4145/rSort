@@ -3,6 +3,7 @@ class BubbleSort:
         self.array = passedArray
         self.name = "InsertionSort"
         self.compares = 0
+        self.swaps = 0
 
     def execute(self):
         sorted = False
@@ -12,12 +13,13 @@ class BubbleSort:
             sorted = True
 
             for index in range(len(self.array)):
+                self.compares += 1
                 if index == 0:
                     continue
 
                 currentElement = self.array[index]
                 if prevElement > self.array[index]:
-                    self.compares += 1
+                    self.swaps += 1
                     self.bubbleSwap(index, prevElement, currentElement, self.array)
                     sorted = False;
 
@@ -25,6 +27,9 @@ class BubbleSort:
 
     def getCompares(self):
         return self.compares
+
+    def getSwaps(self):
+        return self.swaps
 
     def getName(self):
         return self.name
