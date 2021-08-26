@@ -6,10 +6,18 @@ from InsertionSort import InsertionSort
 from BubbleSort import BubbleSort
 
 def main():
-    # array = random.sample(range(1, 10000), 9999)
-    array = [2,4,6,3,4,5,8]
+    array = random.sample(range(1, 10000), 100)
+    # array = [231,424,6345,3546,454645,56546,8456,821,9765,56546,7765]
 
-    algos = [BubbleSort(array), InsertionSort(array), MergeSort(array), QuickSort(array)]
+    print("Array to sort....")
+    print(array)
+
+    algos = [
+        BubbleSort(array),
+        # InsertionSort(array),
+        # MergeSort(array),
+        # QuickSort(array)
+    ]
 
     for algo in algos:
         start = time.time()
@@ -17,13 +25,14 @@ def main():
 
         result = algo.execute()
 
-        printStats(result, start, algo.getCompares())
+        printStats(result, start, algo.getCompares(), algo.getSwaps())
 
 
-def printStats(array, start, compares):
+def printStats(array, start, compares, swaps):
     print('NumberOfCompares: {}'.format(str(compares)))
+    print('NumberOfSwaps: {}'.format(str(swaps)))
     print("Duration: {} seconds \n".format(time.time() - start))
-    # print(array)
+    print(array)
 
 
 if __name__ == '__main__':

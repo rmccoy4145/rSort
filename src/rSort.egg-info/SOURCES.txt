@@ -1,0 +1,7 @@
+README.md
+setup.py
+src/rSort.egg-info/PKG-INFO
+src/rSort.egg-info/SOURCES.txt
+src/rSort.egg-info/dependency_links.txt
+src/rSort.egg-info/requires.txt
+src/rSort.egg-info/top_level.txt

@@ -23,7 +23,8 @@ class BubbleSort:
                     self.bubbleSwap(index, prevElement, currentElement, self.array)
                     sorted = False;
 
-                prevElement = currentElement
+                prevElement = self.array[index]
+        return self.array
 
     def getCompares(self):
         return self.compares

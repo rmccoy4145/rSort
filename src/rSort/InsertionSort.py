@@ -13,8 +13,10 @@ class InsertionSort:
                 if index == 0:
                     continue
                 if self.array[index - 1] > self.array[index]:
+                    self.swaps += 1
                     self.insertionShift(index, self.array)
             sorted = True
+        return self.array
 
     def getSwaps(self):
         return self.swaps
@@ -29,7 +31,6 @@ class InsertionSort:
         return self.array
 
     def insertionShift(self, indexPlaceHolder, array):
-        self.swaps += 1
         index = indexPlaceHolder
         while index >= 1:
             current = array[index]

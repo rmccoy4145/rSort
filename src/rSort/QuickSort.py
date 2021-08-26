@@ -12,7 +12,8 @@ class QuickSort:
         return self.swaps
 
     def execute(self):
-        return self.recursiveQuickSort(self.array, 0, len(self.array))
+        self.recursiveQuickSort(self.array, 0, len(self.array))
+        return self.array
 
     def getCompares(self):
         return self.compares
