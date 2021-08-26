@@ -1,11 +1,13 @@
 import unittest
 from rSort.QuickSort import QuickSort
+from AssertSortHelper import AssertSortHelper
 
 class QuickSortTest(unittest.TestCase):
     def test_Execute_UnsortedArray_SortedArray(self):
         array = [4, 54, 23, 1, 23, 0, 2523, 535, 543]
         algo = QuickSort(array)
         result = algo.execute()
+        assert AssertSortHelper.isSorted(result)
         assert result[0] == 0
         assert result[3] == 23
         assert result[6] == 535
